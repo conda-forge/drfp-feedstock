@@ -1,5 +1,5 @@
 {% set name = "drfp" %}
-{% set version = "0.2.2" %}
+{% set version = "0.3.6" %}
 
 
 package:
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/drfp-{{ version }}.tar.gz
-  sha256: ea4755ad989bbd31a62cc628a7ae1bacdf2bfef0dfde5c899cb4551917405640
+  sha256: 987a8bc36537817d02940618d078817e2891ad499abd1965bf0aacdcb73c5d83
 
 build:
   number: 0
