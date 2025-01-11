@@ -7,11 +7,11 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/drfp-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/drfp-{{ version }}.tar.gz
   sha256: ea4755ad989bbd31a62cc628a7ae1bacdf2bfef0dfde5c899cb4551917405640
 
 build:
-  number: 0
+  number: 1
   noarch: python
   entry_points:
     - drfp = drfp.cli:main
@@ -20,12 +20,12 @@ build:
 requirements:
   host:
     - pip
-    - python >=3.7
+    - python {{ python_min }}
   run:
     - click >=8.0.1
     - importlib_metadata
     - numpy >=1.21.0
-    - python >=3.7
+    - python >={{ python_min }}
     - rdkit
 
 test:
@@ -36,6 +36,7 @@ test:
     - drfp --help
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: https://github.com/reymond-group/drfp
