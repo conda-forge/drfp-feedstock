@@ -1,6 +1,6 @@
 context:
   name: drfp
-  version: 0.2.2
+  version: 0.3.6
 
 package:
   name: ${{ name|lower }}
@@ -8,27 +8,29 @@ package:
 
 source:
   url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/drfp-${{ version }}.tar.gz
-  sha256: ea4755ad989bbd31a62cc628a7ae1bacdf2bfef0dfde5c899cb4551917405640
+  sha256: 987a8bc36537817d02940618d078817e2891ad499abd1965bf0aacdcb73c5d83
 
 build:
-  number: 2
+  number: 0
   noarch: python
-  script: ${{ PYTHON }} -m pip install . -vv
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   python:
     entry_points:
       - drfp = drfp.cli:main
 
 requirements:
   host:
-    - pip
     - python ${{ python_min }}.*
-    - setuptools
+    - setuptools >=46.1.0
+    - setuptools-scm >=5
+    - wheel
+    - pip
   run:
-    - click >=8.0.1
-    - importlib_metadata
-    - numpy >=1.21.0
     - python >=${{ python_min }}
     - rdkit
+    - tqdm
+    - numpy >=1.21.0
+    - click >=8.0.1
 
 tests:
   - python:
@@ -37,10 +39,8 @@ tests:
       python_version: ${{ python_min }}.*
   - requirements:
       run:
-        - pip
         - python ${{ python_min }}.*
     script:
-      - pip check
       - drfp --help
 
 about:
