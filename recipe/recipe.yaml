@@ -1,0 +1,55 @@
+context:
+  name: drfp
+  version: 0.2.2
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/drfp-${{ version }}.tar.gz
+  sha256: ea4755ad989bbd31a62cc628a7ae1bacdf2bfef0dfde5c899cb4551917405640
+
+build:
+  number: 2
+  noarch: python
+  script: ${{ PYTHON }} -m pip install . -vv
+  python:
+    entry_points:
+      - drfp = drfp.cli:main
+
+requirements:
+  host:
+    - pip
+    - python ${{ python_min }}.*
+    - setuptools
+  run:
+    - click >=8.0.1
+    - importlib_metadata
+    - numpy >=1.21.0
+    - python >=${{ python_min }}
+    - rdkit
+
+tests:
+  - python:
+      imports:
+        - drfp
+      python_version: ${{ python_min }}.*
+  - requirements:
+      run:
+        - pip
+        - python ${{ python_min }}.*
+    script:
+      - pip check
+      - drfp --help
+
+about:
+  summary: An NLP-inspired chemical reaction fingerprint based on basic set arithmetic.
+  license: MIT
+  license_file: LICENSE.txt
+  homepage: https://github.com/reymond-group/drfp
+  repository: https://github.com/reymond-group/drfp
+
+extra:
+  recipe-maintainers:
+    - hadim
