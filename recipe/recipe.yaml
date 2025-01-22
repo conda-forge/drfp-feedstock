@@ -9,6 +9,8 @@ package:
 source:
   url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/drfp-${{ version }}.tar.gz
   sha256: 987a8bc36537817d02940618d078817e2891ad499abd1965bf0aacdcb73c5d83
+  patches:
+    - fix-deps.patch
 
 build:
   number: 0
@@ -37,6 +39,7 @@ tests:
       imports:
         - drfp
       python_version: ${{ python_min }}.*
+      pip_check: true
   - requirements:
       run:
         - python ${{ python_min }}.*
