@@ -30,6 +30,7 @@ requirements:
     - openpyxl
     - numpy >=2.2.2
     - rdkit >=2024.9.4
+    - pre-commit >=4.1.0 # only for `pip check` to pass
 
 tests:
   - python:
