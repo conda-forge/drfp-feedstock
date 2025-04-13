@@ -1,6 +1,7 @@
 context:
   name: drfp
-  version: 0.3.6
+  version: "0.3.7"
+  python_min: "3.10"
 
 package:
   name: ${{ name|lower }}
@@ -8,31 +9,28 @@ package:
 
 source:
   url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/drfp-${{ version }}.tar.gz
-  sha256: 987a8bc36537817d02940618d078817e2891ad499abd1965bf0aacdcb73c5d83
-  patches:
-    - fix-deps.patch
+  sha256: be841e38316e8f5d42325d706941979288911cf4b701a904db555a4e95977af7
 
 build:
   number: 0
   noarch: python
   script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  python:
-    entry_points:
-      - drfp = drfp.cli:main
 
 requirements:
   host:
     - python ${{ python_min }}.*
-    - setuptools >=46.1.0
-    - setuptools-scm >=5
-    - wheel
     - pip
+    - hatchling
+    - hatch-vcs
   run:
     - python >=${{ python_min }}
-    - rdkit
     - tqdm
-    - numpy >=1.21.0
-    - click >=8.0.1
+    - click
+    - xgboost
+    - openpyxl
+    - numpy >=2.2.2
+    - rdkit >=2024.9.4
+    - pre-commit >=4.1.0 # only for `pip check` to pass
 
 tests:
   - python:
