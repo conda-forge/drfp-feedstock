@@ -1,6 +1,6 @@
 context:
   name: drfp
-  version: 0.3.6
+  version: "0.3.7"
 
 package:
   name: ${{ name|lower }}
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/drfp-${{ version }}.tar.gz
-  sha256: 987a8bc36537817d02940618d078817e2891ad499abd1965bf0aacdcb73c5d83
+  sha256: be841e38316e8f5d42325d706941979288911cf4b701a904db555a4e95977af7
   patches:
     - fix-deps.patch
 
