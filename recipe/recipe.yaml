@@ -29,10 +29,12 @@ requirements:
     - pip
   run:
     - python >=${{ python_min }}
-    - rdkit
     - tqdm
-    - numpy >=1.21.0
-    - click >=8.0.1
+    - click
+    - xgboost
+    - openpyxl
+    - numpy >=2.2.2
+    - rdkit >=2024.9.4
 
 tests:
   - python:
