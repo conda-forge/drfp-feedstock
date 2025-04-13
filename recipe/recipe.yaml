@@ -1,11 +1,11 @@
 context:
   name: drfp
   version: "0.3.7"
+  python_min: "3.10"
 
 package:
   name: ${{ name|lower }}
   version: ${{ version }}
-  python_min: "3.10"
 
 source:
   url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/drfp-${{ version }}.tar.gz
